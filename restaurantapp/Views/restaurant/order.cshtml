@@ -22,6 +22,10 @@
                 CalculatedSubTotal();
             });
 
+            $("input[type=text]").keyup(function () {
+                CalculateBalance();
+            });
+
             $("#btnaddtolist").click(function () {
                 AddToTheItemList();
             });
@@ -77,6 +81,8 @@
             });
 
             $("#txtFinalTotal").val(parseFloat(FinalTotal).toFixed(2));
+            $("#txtPaymentTotal").val(parseFloat(FinalTotal).toFixed(2));
+            $("#txtBalance").val(parseFloat(FinalTotal).toFixed(2));
 
         }
 
@@ -110,6 +116,23 @@
                 }
 
             });
+        }
+
+        function CalculateBalance() {
+            var FinalAmount = $("#txtPaymentTotal").val();
+            var PaymentAmount = $("#txtPaymentAmount").val();
+            var ReturnAmount = $("#txtReturnTotal").val();
+            var BalanceAmount = parseFloat(FinalAmount) + parseFloat(ReturnAmount)
+                - parseFloat(PaymentAmount);
+
+            $("#txtBalance").val(parseFloat(BalanceAmount));
+
+            if (BalanceAmount != 0.00) {
+                $("#btnPayment").prop('disabled', true);
+            }
+            else {
+                $("#btnPayment").prop('disabled', false);
+            }
         }
     </script>
 
@@ -183,7 +206,7 @@
                                 <label style="padding-left:100px">Total:</label>
                                 <input type="text" readonly id="txtFinalTotal" value="0.00" name="Total">
 
-                           
+
 
                             </td>
                         </tr>
@@ -259,8 +282,49 @@
 
 
                 </table>
-                    <input data-toggle="model" data-target="#divpayment" type="button" value="Save List" name="checkout"
-                           id="btncheckout" class="btn btn-primary" style="margin-left:1200px;margin-bottom:30px" />
+                <input data-bs-toggle="modal" data-bs-target="#divPayment" type="button" value="CheckOut" name="checkout"
+                       id="btnCheckOut" class="btn btn-primary" style="margin-left:1200px;margin-bottom:30px" />
+           </div>
+
+  <div id="divPayment" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Payment</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        Payment Total:
+                                        <input style="text-align:right" type="text" id="txtPaymentTotal" readonly="readonly" value="0.00" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Payment Amount:
+                                        <input style="text-align:right" type="text" id="txtPaymentAmount" value="0.00" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        Return Total:
+                                        <input style="text-align:right" type="text" id="txtReturnTotal" value="0.00" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Balance Amount:
+                                        <input style="text-align:right" type="text" id="txtBalance" readonly="readonly" value="0.00" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnPayment" class="btn btn-success" value="Payment">Payment</button>
+                            <button id="btnClose" data-dismiss="modal" class="btn btn-danger" value="Close">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
@@ -269,8 +333,8 @@
             <h1>Resturent Management System</h1>
             <p><i class="fa fa-phone" style="padding-right: 5px;"></i> +9233-1234567</p>
             <a href="">
-                <i class="fa fa-envelope" style="padding-right: 5px;"></i>
                 resinfoisb123@mywebsite.com
+                <i class="fa fa-envelope" style="padding-right: 5px;"></i>
             </a>
             <br><br><br>
 
