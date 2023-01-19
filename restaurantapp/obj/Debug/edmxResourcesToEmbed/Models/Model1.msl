@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="restaurantModelStoreContainer" CdmEntityContainer="restaurantEntities">
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="restaurantModel.customer">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="customerid" ColumnName="customerid" />
+          <ScalarProperty Name="customername" ColumnName="customername" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="items">
+      <EntityTypeMapping TypeName="restaurantModel.item">
+        <MappingFragment StoreEntitySet="item">
+          <ScalarProperty Name="itemid" ColumnName="itemid" />
+          <ScalarProperty Name="itemname" ColumnName="itemname" />
+          <ScalarProperty Name="itemprice" ColumnName="itemprice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paymentTypes">
+      <EntityTypeMapping TypeName="restaurantModel.paymentType">
+        <MappingFragment StoreEntitySet="paymentType">
+          <ScalarProperty Name="paymenttypeid" ColumnName="paymenttypeid" />
+          <ScalarProperty Name="paymenttypename" ColumnName="paymenttypename" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

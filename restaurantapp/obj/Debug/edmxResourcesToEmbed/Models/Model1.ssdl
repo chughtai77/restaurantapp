@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="restaurantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="customerid" />
+    </Key>
+    <Property Name="customerid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customername" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="item">
+    <Key>
+      <PropertyRef Name="itemid" />
+    </Key>
+    <Property Name="itemid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="itemname" Type="varchar" MaxLength="50" />
+    <Property Name="itemprice" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="paymentType">
+    <Key>
+      <PropertyRef Name="paymenttypeid" />
+    </Key>
+    <Property Name="paymenttypeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="paymenttypename" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="restaurantModelStoreContainer">
+    <EntitySet Name="customers" EntityType="Self.customers" Schema="master" store:Type="Tables" />
+    <EntitySet Name="item" EntityType="Self.item" Schema="master" store:Type="Tables" />
+    <EntitySet Name="paymentType" EntityType="Self.paymentType" Schema="master" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
